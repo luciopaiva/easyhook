@@ -584,8 +584,21 @@ namespace EasyHook
             }
 
             // Attempt to load the library by its FullName and if that fails, by its original library filename
-            if ((UserAsm = Assembly.ReflectionOnlyLoad(InRemoteInfo.UserLibraryName)) == null && (UserAsm = Assembly.ReflectionOnlyLoadFrom(InRemoteInfo.UserLibrary)) == null)
-                throw new DllNotFoundException("The given assembly could not be found.");
+            try
+            {
+                UserAsm = Assembly.ReflectionOnlyLoad(InRemoteInfo.UserLibraryName);
+            }
+            catch (FileNotFoundException)
+            {
+                try
+                {
+                    UserAsm = Assembly.ReflectionOnlyLoadFrom(InRemoteInfo.UserLibrary);
+                }
+                catch (FileNotFoundException)
+                {
+                    throw new DllNotFoundException("The given assembly could not be found.");
+                }
+            }
 
             // Check for a strong name if necessary
             if (InRemoteInfo.RequireStrongName && (Int32)(UserAsm.GetName().Flags & AssemblyNameFlags.PublicKey) == 0)
