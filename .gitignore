@@ -1,0 +1,16 @@
+Build/
+EasyHook/obj/
+EasyHookSvc/obj/
+Examples/FileMon/obj/
+Examples/FileMonInject/obj/
+Examples/ProcMonInject/obj/
+Examples/ProcessMonitor/obj/
+Test/ComplexParameterInject/obj/
+Test/ComplexParameterTest/obj/
+Test/ManagedTarget/obj/
+Test/ManagedTest/obj/
+EasyHook.sdf
+*.suo
+EasyHook/EasyHook.csproj.user
+EasyHookDll/EasyHookDll.vcxproj.user
+EasyHookSvc/EasyHookSvc.csproj.user
